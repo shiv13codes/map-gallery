@@ -2,7 +2,7 @@ import os
 import json
 import random
 from datetime import datetime
-from PIL import Image, ExifTags
+from PIL import Image, ExifTags, ImageOps # Added ImageOps for rotation fix
 
 # --- CONFIGURATION ---
 IMAGE_FOLDER = 'images'      # Folder containing your high-res photos
@@ -108,15 +108,22 @@ def generate_data():
         filepath = os.path.join(IMAGE_FOLDER, filename)
         
         try:
+            # Open the image
             img = Image.open(filepath)
             
-            # 1. Generate Thumbnail
-            thumb_path = generate_thumbnail(img, filename)
-            
-            # 2. Extract Metadata
+            # 1. Extract Metadata (Do this BEFORE rotation to ensure raw EXIF is intact)
             exif = get_exif_data(img)
             lat, lon = get_lat_lon(exif)
             date_taken = get_date_taken(exif)
+            
+            # 2. Fix Orientation & Generate Thumbnail
+            try:
+                # This physically rotates the pixels based on the EXIF flag
+                img_rotated = ImageOps.exif_transpose(img) 
+            except Exception:
+                img_rotated = img # Fallback to original if rotation fails
+
+            thumb_path = generate_thumbnail(img_rotated, filename)
             
             # 3. Handle Coordinates (Real vs Dummy)
             if lat is None or lon is None:
