@@ -58,42 +58,38 @@ You can customize the map title, default center, and tile providers in `src/App.
 
 Follow these steps to get your map gallery online for free.
 
-### 1. Put your code on GitHub
+### 1. Get your own copy
 
-1. Create an account at GitHub.com.
-2. Create a new repository (click the **+** icon top-right → **New repository**).
-3. Name it (e.g., `my-map-gallery`) and click **Create repository**.
-4. Upload your project code:
-   - Open your terminal in the project folder.
-   - Run these commands (replace `YOUR_USERNAME` and `YOUR_REPO_NAME` with your details):
-     ```bash
-     # Initialize git (if not already done)
-     git init
-     git add .
-     git commit -m "Initial setup"
-     
-     # Connect to your new repository
-     git branch -M main
-     git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-     git push -u origin main
-     ```
+1. Create an account at GitHub.com if you don't have one.
+2. Click the **Fork** button at the top right of this page.
+3. Click **Create fork**.
+   - You now have your own copy of this project under your account!
 
-### 2. Connect to Vercel
+### 2. Add your photos
+
+1. In your new repository, navigate to the `public/images` folder.
+2. Delete the existing demo photos (optional).
+3. Click **Add file** → **Upload files**.
+4. Drag and drop your own geotagged photos.
+5. Click **Commit changes**.
+
+### 3. Connect to Vercel
 
 1. Create an account at Vercel.com (Log in with GitHub).
 2. Click **Add New...** → **Project**.
 3. Find your repository and click **Import**.
 4. Leave all settings as default (Framework Preset should be **Vite**).
 5. Click **Deploy**.
+   - Your site is now live with your photos!
 
-### 3. Updating Your Map
+### 4. Future Updates
 
-To add new photos later, simply upload them and push!
-1. Add photos to `public/images`.
-2. Push your changes to GitHub:
-   ```bash
-   git add .
-   git commit -m "New photos"
-   git push
-   ```
-3. Vercel will automatically generate the map data and update your live site.
+To add more photos later, simply upload them to the `public/images` folder and commit. Vercel will automatically update your site.
+
+### 5. Editing Settings
+
+To change the title or map settings:
+1. Go to `src/App.jsx` on GitHub.
+2. Click the ✏️ (Pencil Icon) to edit.
+3. Modify the `CONFIG` values.
+4. Click **Commit changes**.
