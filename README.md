@@ -2,6 +2,9 @@
 
 A React application that creates an interactive map gallery from your geotagged photos. It automatically extracts GPS data from images and plots them on a map, allowing users to explore photography by location.
 
+<img width="2559" height="1439" alt="image" src="https://github.com/user-attachments/assets/889bb03d-31a2-4d7d-b60f-ce3a64e168ca" />
+
+
 ## Features
 
 - **Interactive Mapping**: Powered by Leaflet.js with custom photo markers.
