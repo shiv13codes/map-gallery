@@ -1,16 +1,99 @@
-# React + Vite
+# Vantage Point - Photo Map Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application that creates an interactive map gallery from your geotagged photos. It automatically extracts GPS data from images and plots them on a map, allowing users to explore photography by location.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Interactive Mapping**: Powered by Leaflet.js with custom photo markers.
+- **Dual Map Layers**: Switch between CartoDB Voyager (Street) and Esri World Imagery (Satellite).
+- **Automated Data Pipeline**: A Node.js script scans your images, generates thumbnails, and extracts EXIF GPS coordinates.
+- **Responsive Lightbox**: View full-resolution images with location coordinates and links to Google Maps.
+- **Performance**: Built on Vite for fast development and production builds.
 
-## React Compiler
+## Project Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `src/`: React source code.
+- `public/images/`: Directory for source images.
+- `scripts/generate-map-data.js`: Utility script to process images and generate `photos.json`.
+- `public/photos.json`: Generated data file containing image metadata and coordinates.
 
-## Expanding the ESLint configuration
+## Setup & Usage
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Installation
+
+```bash
+npm install
+```
+
+### 2. Adding Photos
+
+1. Drop your geotagged photos into `public/images`.
+2. Run the generation script to create thumbnails and map data:
+
+```bash
+node scripts/generate-map-data.js
+```
+
+### 3. Development
+
+Start the local development server:
+
+```bash
+npm run dev
+```
+
+### 4. Build
+
+Build for production:
+
+```bash
+npm run build
+```
+
+## Configuration
+
+You can customize the map title, default center, and tile providers in `src/App.jsx` under the `CONFIG` object.
+
+## 🚀 Hosting Guide (Non-Technical)
+
+Follow these steps to get your map gallery online for free.
+
+### 1. Put your code on GitHub
+
+1. Create an account at GitHub.com.
+2. Create a new repository (click the **+** icon top-right → **New repository**).
+3. Name it (e.g., `my-map-gallery`) and click **Create repository**.
+4. Upload your project code:
+   - Open your terminal in the project folder.
+   - Run these commands (replace `YOUR_USERNAME` and `YOUR_REPO_NAME` with your details):
+     ```bash
+     # Initialize git (if not already done)
+     git init
+     git add .
+     git commit -m "Initial setup"
+     
+     # Connect to your new repository
+     git branch -M main
+     git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+     git push -u origin main
+     ```
+
+### 2. Connect to Vercel
+
+1. Create an account at Vercel.com (Log in with GitHub).
+2. Click **Add New...** → **Project**.
+3. Find your repository and click **Import**.
+4. Leave all settings as default (Framework Preset should be **Vite**).
+5. Click **Deploy**.
+
+### 3. Updating Your Map
+
+To add new photos later, simply upload them and push!
+1. Add photos to `public/images`.
+2. Push your changes to GitHub:
+   ```bash
+   git add .
+   git commit -m "New photos"
+   git push
+   ```
+3. Vercel will automatically generate the map data and update your live site.

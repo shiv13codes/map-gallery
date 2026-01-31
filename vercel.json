@@ -1,3 +1,4 @@
 {
-  "framework": "vite"
+  "framework": "vite",
+  "buildCommand": "node scripts/generate-map-data.js && npm run build"
 }
